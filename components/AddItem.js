@@ -3,14 +3,16 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-nativ
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 
-const AddItem = ({title, addItem}) => {
-    const [text, setText] = useState('');
+const AddItem = ({title, addItem, submitAndClear}) => {
+    let [text, setText] = useState('');
 
-    const onChange = (textVal) => setText(textVal);
+    const onChange = (textVal) => {
+        setText(textVal);
+    }
 
   return (
     <View>
-        <TextInput placeholder="Add Item" style={styles.input} onChangeText={onChange}/>
+        <TextInput clearButtonMode='always' placeholder="Add Item" style={styles.input} onChangeText={onChange}/>
         <TouchableOpacity style={styles.btn} onPress={() => 
         addItem(text)}>
             <Text style={styles.btnText}><Icon name="plus" size={20} /> Add Item</Text>
@@ -21,6 +23,7 @@ const AddItem = ({title, addItem}) => {
 
 const styles = StyleSheet.create({
     input: {
+        paddingLeft: 25,
         height: 60, 
         padding: 8,
         fontSize: 16,
